@@ -101,15 +101,27 @@ Node* deleteNode(Node* root, int val) {
     return root;
 }
 
+void printRange(Node* root, int start, int end) {
+    if (root == NULL) {
+        return;
+    }
+
+    if(start <= root->data && root->data <= end) {
+        printRange(root->left, start, end);
+        cout << root->data << " ";
+        printRange(root->right, start, end);
+    } else if ( root->data < start) {
+        printRange(root->right, start, end);
+    } else {
+        printRange(root->left, start, end);
+    }
+}
 
 int main() {
     vector<int> vec = {2,4,1,5,3,9,6,0,8,7};
     int n = vec.size()-1;
 
     Node* root = buildBST(vec,n);
-    inorder(root);
-    cout << endl;
-    deleteNode(root, 7);
-    inorder(root);
+    printRange(root, 5,9);
 
 }

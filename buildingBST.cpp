@@ -50,6 +50,20 @@ Node* buildBST(vector<int> vec, int n) {
     return root;
 }
 
+bool search(Node* root, int key) {
+    if (root==NULL) {
+        return false;
+    }
+    if (root->data==key) {
+        return true;
+    }
+    if (root->data > key) {
+        return search(root->left, key);
+    } else {
+        return search(root->right, key);
+    }
+}
+
 
 
 int main() {
@@ -57,6 +71,8 @@ int main() {
     int n = vec.size()-1;
 
     Node* root = buildBST(vec,n);
-    inorder(root);
+    // inorder(root);
+
+    cout << search(root, 7);
 
 }

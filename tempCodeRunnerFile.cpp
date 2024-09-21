@@ -1,1 +1,1 @@
-ot, 5,9);
+root = buildBalancedBST(root);

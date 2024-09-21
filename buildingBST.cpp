@@ -117,11 +117,32 @@ void printRange(Node* root, int start, int end) {
     }
 }
 
+bool isValidBSTHelper(Node* root, Node* min, Node* max) {
+    if (root==NULL) {
+        return true;
+    }
+
+    if (min != NULL && root->data < min->data ) {
+        return false;
+    }
+
+    if (max != NULL && root->data > max->data ) {
+        return false;
+    }
+
+    return isValidBSTHelper(root->left, min, root) &&
+    isValidBSTHelper(root->right, root, max);    
+}
+
+bool isValidBST(Node* root) {
+    return isValidBSTHelper(root, NULL, NULL);
+}
+
 int main() {
     vector<int> vec = {2,4,1,5,3,9,6,0,8,7};
     int n = vec.size()-1;
 
     Node* root = buildBST(vec,n);
-    printRange(root, 5,9);
-
+    // printRange(root, 5,9);
+    cout << isValidBST(root);
 }
